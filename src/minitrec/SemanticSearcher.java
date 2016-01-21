@@ -1,5 +1,8 @@
 package minitrec;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -37,7 +40,8 @@ public class SemanticSearcher {
         		"PREFIX sk: <http://www.w3.org/2004/02/skos/core#> PREFIX foaf: <"+FOAF.getURI()+"> " +
         		"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
         		"SELECT distinct ?x WHERE { ?x rdf:type ?tipo . ?tipo rdfs:subClassOf mt:documento . " +
-        		"?x dc:date ?fecha . FILTER (xsd:integer(?fecha) > 2011 && xsd:integer(?fecha) <=2016) . " +
+        		"?x dc:date ?fecha . FILTER (xsd:integer(?fecha) > " + (Calendar.getInstance().get(Calendar.YEAR) - 5) +"&& xsd:integer(?fecha) <=" + 
+        		Calendar.getInstance().get(Calendar.YEAR) +") . " +
         		"{?x mt:subject im:desarrollo} UNION {?x mt:subject im:videojuego} UNION {?x mt:subject im:disenoPersonajes} " +
         		"UNION {?x mt:subject ?relacionado . ?relacionado sk:related|sk:broader im:desarrollo} " +
         		"UNION {?x mt:subject ?relacionado . ?relacionado sk:related|sk:broader im:videojuego} " +
