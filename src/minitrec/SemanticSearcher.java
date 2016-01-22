@@ -52,9 +52,7 @@ public class SemanticSearcher {
 		
 		Model model = FileManager.get().loadModel(rdfPath);
         Model rdfsModel = FileManager.get().loadModel(rdfsPath);
-        Model skosModel = FileManager.get().loadModel("skos.rdf");
         model.add(rdfsModel);
-        model.add(skosModel);
         
         ArrayList<String> queryStrings = new ArrayList<String>();
         ArrayList<String> queryCodes = new ArrayList<String>();

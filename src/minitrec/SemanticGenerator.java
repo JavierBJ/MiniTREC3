@@ -56,7 +56,7 @@ public class SemanticGenerator {
 	
 	
 	public static void main(String[] args) {
-		/*String rdfPath = null;
+		String rdfPath = null;
 		String skosPath = null;
 		String docsPath = null;
 		
@@ -71,10 +71,7 @@ public class SemanticGenerator {
 				rdfPath = args[i + 1];
 				i++;
 			}
-		}*/
-		String rdfPath = "";
-		String skosPath = "skos.rdf";
-		String docsPath = "recordsdc";
+		}
 		
 		if ((rdfPath==null) || (skosPath==null) || (docsPath==null)) {
 			System.out.println("Error en la introduccion de parametros.");
@@ -92,8 +89,8 @@ public class SemanticGenerator {
 			recursoTesis = model.createResource(TESIS_URI);
 			recursoDocumento = model.createResource(DOCUMENTO_URI);
 			
-			System.out.println("Metiendo rdfs");
 			model = generateRDF(docsDirectory, model, skos);
+			model.add(skos);
 			
 			/* Guarda el modelo en un fichero XML*/
 			try {
@@ -101,7 +98,6 @@ public class SemanticGenerator {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Metidos");
 		} catch (IOException e) {
 			System.out.println("Error generando rdf.");
 			e.printStackTrace();
@@ -213,7 +209,6 @@ public class SemanticGenerator {
 				fis.close();
 			}
 		}
-		System.out.println("done");
 		return model;
 	}
 	

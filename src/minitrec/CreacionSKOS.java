@@ -15,7 +15,7 @@ public class CreacionSKOS {
 	
 	private static String skosConceptURI = "http://www.w3.org/2004/02/skos/core#Concept";
 
-	public static void main(String[] args) {
+	public static void createSKOS() {
 		/* Crea un nuevo modelo vacio */
 		Model model = ModelFactory.createDefaultModel();
 		
